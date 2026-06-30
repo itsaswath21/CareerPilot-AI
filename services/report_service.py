@@ -3,22 +3,35 @@ from reportlab.lib.styles import getSampleStyleSheet
 
 styles = getSampleStyleSheet()
 
-def create_report(text, filename):
 
-    pdf = SimpleDocTemplate(filename)
+def create_report(analysis, filename):
+
+    doc = SimpleDocTemplate(filename)
 
     story = []
 
     story.append(
         Paragraph(
-            "<b>CareerPilot AI Report</b>",
+            "CareerPilot AI Resume Report",
             styles["Heading1"]
         )
     )
 
     story.append(
-        Paragraph(text.replace("\n", "<br/>"),
-        styles["BodyText"])
+        Paragraph("<br/><br/>", styles["BodyText"])
     )
 
-    pdf.build(story)
+    paragraphs = analysis.split("\n")
+
+    for line in paragraphs:
+
+        if line.strip():
+
+            story.append(
+                Paragraph(
+                    line.replace("\n", "<br/>"),
+                    styles["BodyText"]
+                )
+            )
+
+    doc.build(story)

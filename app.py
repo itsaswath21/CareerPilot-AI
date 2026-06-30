@@ -1,14 +1,20 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import markdown
 import os
 
 from services.pdf_service import extract_text_from_pdf
 from services.ai_service import analyze_resume
+from services.report_service import create_report
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
+REPORT_FOLDER = "reports"
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["REPORT_FOLDER"] = REPORT_FOLDER
+
+latest_analysis = ""
 
 
 @app.route("/")
@@ -18,6 +24,8 @@ def home():
 
 @app.route("/upload", methods=["POST"])
 def upload():
+
+    global latest_analysis
 
     file = request.files["resume"]
 
@@ -32,11 +40,32 @@ def upload():
 
     analysis = analyze_resume(text)
 
-    analysis = markdown.markdown(analysis)
+    latest_analysis = analysis
+
+    html = markdown.markdown(analysis)
 
     return render_template(
         "result.html",
-        analysis=analysis
+        analysis=html
+    )
+
+
+@app.route("/download")
+def download():
+
+    filename = os.path.join(
+        app.config["REPORT_FOLDER"],
+        "CareerPilot_Report.pdf"
+    )
+
+    create_report(
+        latest_analysis,
+        filename
+    )
+
+    return send_file(
+        filename,
+        as_attachment=True
     )
 
 

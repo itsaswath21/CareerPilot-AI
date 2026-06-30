@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-<title>CareerPilot AI Results</title>
+<title>CareerPilot AI</title>
 
 <link rel="stylesheet"
 href="{{ url_for('static', filename='style.css') }}">
@@ -16,16 +17,26 @@ href="{{ url_for('static', filename='style.css') }}">
 
 <h1>🚀 CareerPilot AI</h1>
 
-<h2>Your Resume Analysis</h2>
-
 <div class="analysis-card">
 
-{{ analysis|safe }}
+{{analysis|safe}}
 
 </div>
 
+<br>
+
+<a href="/download" class="button">
+
+📥 Download PDF Report
+
+</a>
+
+<br><br>
+
 <a href="/" class="button">
+
 Analyze Another Resume
+
 </a>
 
 </div>
