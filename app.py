@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
-from pypdf import PdfReader
-from ai_analyzer import analyze_resume_ai
+import markdown
 import os
+
+from services.pdf_service import extract_text_from_pdf
+from services.ai_service import analyze_resume
 
 app = Flask(__name__)
 
@@ -26,21 +28,15 @@ def upload():
 
     file.save(filepath)
 
-    reader = PdfReader(filepath)
+    text = extract_text_from_pdf(filepath)
 
-    text = ""
+    analysis = analyze_resume(text)
 
-    for page in reader.pages:
-        extracted = page.extract_text()
-
-        if extracted:
-            text += extracted
-
-    ai_response = analyze_resume_ai(text)
+    analysis = markdown.markdown(analysis)
 
     return render_template(
         "result.html",
-        analysis=ai_response
+        analysis=analysis
     )
 
 

@@ -1,15 +1,16 @@
 import ollama
 
-def analyze_resume_ai(resume_text):
+
+def analyze_resume(text):
 
     prompt = f"""
 You are an expert ATS Resume Reviewer.
 
-Analyze the resume below.
+Analyze the following resume.
 
-Return your answer using Markdown headings and bullet points.
+Return your answer using Markdown.
 
-Use exactly these sections:
+Use these sections:
 
 # ATS Score
 
@@ -27,7 +28,7 @@ Use exactly these sections:
 
 Resume:
 
-{resume_text}
+{text}
 """
 
     response = ollama.chat(

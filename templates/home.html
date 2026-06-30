@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>CareerPilot AI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<title>CareerPilot AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🚀 CareerPilot AI</h1>
+<h1>🚀 CareerPilot AI</h1>
 
-    <p>Upload your resume and receive AI-powered career insights.</p>
+<p>
+AI Powered Resume Analyzer
+</p>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+<form action="/upload"
+method="POST"
+enctype="multipart/form-data">
 
-        <input type="file" name="resume" accept=".pdf" required>
-    
-        <br><br>
-    
-        <button type="submit">
-            Analyze Resume
-        </button>
-    
-    </form>
+<input
+type="file"
+name="resume"
+accept=".pdf"
+required>
+
+<br><br>
+
+<button>
+
+Analyze Resume
+
+</button>
+
+</form>
 
 </div>
 
 </body>
+
 </html>
