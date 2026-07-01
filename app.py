@@ -4,6 +4,7 @@ import os
 from services.pdf_service import extract_text_from_pdf
 from services.ai_service import analyze_resume
 from services.report_service import create_report
+from services.job_service import recommend_jobs
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["REPORT_FOLDER"] = REPORT_FOLDER
 
 latest_analysis = {}
+latest_jobs = []
 
 
 @app.route("/")
@@ -25,6 +27,7 @@ def home():
 def upload():
 
     global latest_analysis
+    global latest_jobs
 
     file = request.files["resume"]
 
@@ -35,17 +38,24 @@ def upload():
 
     file.save(filepath)
 
-    # Extract text from PDF
+    # Extract resume text
     text = extract_text_from_pdf(filepath)
 
-    # AI Analysis (returns JSON/dictionary)
+    # AI Analysis
     analysis = analyze_resume(text)
 
     latest_analysis = analysis
 
+    # Get strengths from AI
+    skills = analysis.get("strengths", [])
+
+    # Generate job recommendations
+    latest_jobs = recommend_jobs(skills)
+
     return render_template(
         "dashboard.html",
-        analysis=analysis
+        analysis=analysis,
+        jobs=latest_jobs
     )
 
 
