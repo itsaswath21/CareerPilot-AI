@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, send_file
-import markdown
 import os
 
 from services.pdf_service import extract_text_from_pdf
@@ -14,7 +13,7 @@ REPORT_FOLDER = "reports"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["REPORT_FOLDER"] = REPORT_FOLDER
 
-latest_analysis = ""
+latest_analysis = {}
 
 
 @app.route("/")
@@ -36,17 +35,17 @@ def upload():
 
     file.save(filepath)
 
+    # Extract text from PDF
     text = extract_text_from_pdf(filepath)
 
+    # AI Analysis (returns JSON/dictionary)
     analysis = analyze_resume(text)
 
     latest_analysis = analysis
 
-    html = markdown.markdown(analysis)
-
     return render_template(
-        "result.html",
-        analysis=html
+        "dashboard.html",
+        analysis=analysis
     )
 
 
@@ -59,7 +58,7 @@ def download():
     )
 
     create_report(
-        latest_analysis,
+        str(latest_analysis),
         filename
     )
 

@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}
+CareerPilot AI Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="row mb-5">
+
+    <div class="col">
+
+        <h1 class="fw-bold display-5">
+            🚀 CareerPilot AI
+        </h1>
+
+        <p class="text-muted fs-5">
+            Your Personal AI Career Assistant
+        </p>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <!-- ATS SCORE -->
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-lg border-0 rounded-4 h-100">
+
+            <div class="card-body text-center p-4">
+
+                <h5 class="fw-bold">
+
+                    🎯 ATS Score
+
+                </h5>
+
+                <h1 class="display-2 text-success fw-bold mt-3">
+
+                    {{ analysis["ats_score"] }}%
+
+                </h1>
+
+                <div class="progress mt-4" style="height:18px;">
+
+                    <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: {{ analysis['ats_score'] }}%;">
+
+                    </div>
+
+                </div>
+
+                <p class="text-muted mt-3">
+
+                    {% if analysis["ats_score"] >= 85 %}
+                        Excellent Resume 🚀
+
+                    {% elif analysis["ats_score"] >= 70 %}
+                        Good Resume 👍
+
+                    {% else %}
+                        Needs Improvement 💪
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ROLES -->
+
+    <div class="col-lg-8">
+
+        <div class="card shadow-lg border-0 rounded-4 h-100">
+
+            <div class="card-body p-4">
+
+                <h4>
+
+                    💼 Recommended Roles
+
+                </h4>
+
+                <hr>
+
+                <div class="row">
+
+                    {% for role in analysis["recommended_roles"] %}
+
+                    <div class="col-md-6 mb-3">
+
+                        <div class="alert alert-primary">
+
+                            {{ role }}
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-4 g-4">
+
+    <!-- STRENGTHS -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-body p-4">
+
+                <h4>
+
+                    💪 Strengths
+
+                </h4>
+
+                <hr>
+
+                {% for skill in analysis["strengths"] %}
+
+                <span class="badge bg-success fs-6 p-2 m-2">
+
+                    {{ skill }}
+
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MISSING -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-body p-4">
+
+                <h4>
+
+                    ⚠ Missing Skills
+
+                </h4>
+
+                <hr>
+
+                {% for skill in analysis["missing_skills"] %}
+
+                <span class="badge bg-danger fs-6 p-2 m-2">
+
+                    {{ skill }}
+
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow border-0 rounded-4 mt-4">
+
+    <div class="card-body p-4">
+
+        <h4>
+
+            📚 Career Advice
+
+        </h4>
+
+        <hr>
+
+        <div class="alert alert-info">
+
+            {{ analysis["career_advice"] }}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card shadow border-0 rounded-4 mt-4">
+
+    <div class="card-body p-4">
+
+        <h4>
+
+            💼 Live Job Recommendations
+
+        </h4>
+
+        <hr>
+
+        <div class="alert alert-warning">
+
+            🚧 Coming in Version 2
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="text-center mt-5">
+
+    <a href="/download"
+       class="btn btn-success btn-lg">
+
+        📄 Download Report
+
+    </a>
+
+    <a href="/"
+       class="btn btn-primary btn-lg ms-3">
+
+        Analyze Another Resume
+
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,160 +1,57 @@
 body{
 
     background:#f5f7fb;
-    
-    font-family:Arial,Helvetica,sans-serif;
-    
-    display:flex;
-    
-    justify-content:center;
-    
-    align-items:center;
-    
-    height:100vh;
-    
-    margin:0;
-    
-    }
-    
-    .container{
-    
-    background:white;
-    
-    padding:40px;
-    
-    width:600px;
-    
-    border-radius:20px;
-    
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-    
-    text-align:center;
-    
-    }
-    
-    h1{
-    
-    font-size:42px;
-    
-    color:#1e3a8a;
-    
-    margin-bottom:10px;
-    
-    }
-    
-    p{
-    
-    font-size:20px;
-    
-    color:gray;
-    
-    margin-bottom:30px;
-    
-    }
-    
-    input{
-    
-    padding:15px;
-    
-    font-size:18px;
-    
-    }
-    
-    button{
-    
-    background:#2563eb;
-    
-    color:white;
-    
-    border:none;
-    
-    padding:15px 35px;
-    
-    font-size:18px;
-    
-    border-radius:12px;
-    
-    cursor:pointer;
-    
-    transition:.3s;
-    
-    }
-    
-    button:hover{
-    
-    background:#1d4ed8;
-    
-    transform:scale(1.05);
-    
-    }
-    .result-container{
 
-        width:900px;
-        
-        margin:40px auto;
-        
-        background:white;
-        
-        padding:40px;
-        
-        border-radius:20px;
-        
-        box-shadow:0 15px 35px rgba(0,0,0,.15);
-        
-        }
-        
-        .analysis-card{
-        
-        background:#f9fafb;
-        
-        padding:30px;
-        
-        border-radius:15px;
-        
-        line-height:1.8;
-        
-        font-size:18px;
-        
-        }
-        
-        .analysis-card h1,
-        .analysis-card h2,
-        .analysis-card h3{
-        
-        color:#2563eb;
-        
-        margin-top:25px;
-        
-        }
-        
-        .analysis-card ul{
-        
-        padding-left:25px;
-        
-        }
-        
-        .button{
-        
-        display:inline-block;
-        
-        margin-top:30px;
-        
-        padding:15px 30px;
-        
-        background:#2563eb;
-        
-        color:white;
-        
-        text-decoration:none;
-        
-        border-radius:10px;
-        
-        transition:.3s;
-        
-        }
-        
-        .button:hover{
-        
-        background:#1d4ed8;
-        
-        }
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.card{
+
+    transition:0.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0px 15px 35px rgba(0,0,0,0.15);
+
+}
+
+.progress{
+
+    border-radius:20px;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+}
+
+.badge{
+
+    border-radius:20px;
+
+}
+
+.alert{
+
+    border-radius:15px;
+
+}
+
+.btn{
+
+    border-radius:12px;
+
+}
+
+.navbar{
+
+    box-shadow:0px 5px 15px rgba(0,0,0,.15);
+
+}

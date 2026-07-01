@@ -1,30 +1,38 @@
 import ollama
+import json
 
 
 def analyze_resume(text):
 
     prompt = f"""
-You are an expert ATS Resume Reviewer.
+You are an ATS Resume Analyzer.
 
 Analyze the following resume.
 
-Return your answer using Markdown.
+Return ONLY valid JSON.
 
-Use these sections:
+Do NOT include explanations.
+Do NOT include markdown.
+Do NOT wrap the JSON inside ```.
 
-# ATS Score
+Return EXACTLY this structure:
 
-# Strengths
-
-# Weaknesses
-
-# Missing Skills
-
-# Suggested Projects
-
-# Interview Questions
-
-# Career Advice
+{{
+    "ats_score": 85,
+    "strengths": [
+        "Python",
+        "Flask"
+    ],
+    "missing_skills": [
+        "Docker",
+        "AWS"
+    ],
+    "recommended_roles": [
+        "Backend Developer",
+        "Software Engineer"
+    ],
+    "career_advice": "Your advice here."
+}}
 
 Resume:
 
@@ -41,4 +49,10 @@ Resume:
         ]
     )
 
-    return response["message"]["content"]
+    content = response["message"]["content"]
+
+    content = content.replace("```json", "")
+    content = content.replace("```", "")
+    content = content.strip()
+
+    return json.loads(content)
