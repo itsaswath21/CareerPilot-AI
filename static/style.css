@@ -1,57 +1,155 @@
-body{
+/* =========================
+   CareerPilot AI v2 Styling
+   ========================= */
 
-    background:#f5f7fb;
 
-    font-family:Arial, Helvetica, sans-serif;
+   * {
 
-}
-
-.card{
-
-    transition:0.3s;
+    box-sizing: border-box;
 
 }
 
-.card:hover{
 
-    transform:translateY(-6px);
+body {
 
-    box-shadow:0px 15px 35px rgba(0,0,0,0.15);
+    min-height: 100vh;
 
-}
+    background:
+    linear-gradient(
+        135deg,
+        #eef2ff,
+        #f8fafc
+    );
 
-.progress{
-
-    border-radius:20px;
-
-}
-
-.progress-bar{
-
-    border-radius:20px;
-
-}
-
-.badge{
-
-    border-radius:20px;
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
 }
 
-.alert{
 
-    border-radius:15px;
+/* NAVBAR */
+
+
+.custom-navbar {
+
+    background:
+    linear-gradient(
+        90deg,
+        #111827,
+        #1e3a8a
+    );
+
+    padding:
+
+    18px 0;
 
 }
 
-.btn{
 
-    border-radius:12px;
+/* CARDS */
+
+
+.card {
+
+    border-radius: 22px;
+
+    border: none;
+
+    transition:
+
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
 }
 
-.navbar{
 
-    box-shadow:0px 5px 15px rgba(0,0,0,.15);
+.card:hover {
+
+    transform:
+    translateY(-6px);
+
+    box-shadow:
+
+    0 20px 40px
+    rgba(0,0,0,0.15);
+
+}
+
+
+/* BUTTONS */
+
+
+.btn {
+
+    border-radius: 14px;
+
+    padding:
+
+    12px 25px;
+
+    font-weight: bold;
+
+}
+
+
+/* BADGES */
+
+
+.badge {
+
+    border-radius: 30px;
+
+    padding:
+
+    10px 15px;
+
+}
+
+
+/* PROGRESS BAR */
+
+
+.progress {
+
+    height: 18px;
+
+    border-radius: 20px;
+
+}
+
+
+.progress-bar {
+
+    border-radius: 20px;
+
+}
+
+
+/* JOB CARDS */
+
+
+.job-card {
+
+    height:100%;
+
+    border-left:
+
+    5px solid #2563eb;
+
+}
+
+
+/* FOOTER */
+
+
+footer {
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#6b7280;
 
 }
