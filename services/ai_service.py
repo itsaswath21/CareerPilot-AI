@@ -5,18 +5,23 @@ import re
 
 def analyze_resume(text):
 
+    print("🧠 Starting resume AI analysis...")
+
     prompt = f"""
+
 You are an ATS Resume Analyzer.
 
-Analyze the following resume.
+Analyze this resume:
 
-Return ONLY valid JSON.
+{text}
 
-Do NOT include explanations.
-Do NOT include markdown.
-Do NOT wrap the JSON inside ```.
 
-Return EXACTLY this structure:
+Return ONLY JSON.
+
+No explanation.
+No markdown.
+
+Use this exact format:
 
 {{
     "ats_score": 85,
@@ -32,50 +37,87 @@ Return EXACTLY this structure:
         "Backend Developer",
         "Software Engineer"
     ],
-    "career_advice": "Your advice here."
+    "career_advice": "Advice here"
 }}
 
-Resume:
-
-{text}
 """
 
+
     response = ollama.chat(
+
         model="llama3.2",
+
         messages=[
             {
-                "role": "user",
-                "content": prompt
+                "role":"user",
+                "content":prompt
             }
         ]
+
     )
+
+
+    print("✅ Resume AI replied")
+
 
     content = response["message"]["content"]
 
-    # Remove markdown if present
-    content = content.replace("```json", "")
-    content = content.replace("```", "")
+
+    content = content.replace(
+        "```json",
+        ""
+    )
+
+    content = content.replace(
+        "```",
+        ""
+    )
+
     content = content.strip()
 
-    # Extract only the JSON part
-    match = re.search(r"\{.*\}", content, re.DOTALL)
+
+    match = re.search(
+        r"\{.*\}",
+        content,
+        re.DOTALL
+    )
+
 
     if match:
+
         content = match.group()
 
+
     try:
+
         return json.loads(content)
 
-    except Exception:
 
-        print("\n===== OLLAMA RESPONSE =====")
+    except Exception as e:
+
+
+        print("JSON ERROR:", e)
+
         print(content)
-        print("===========================\n")
+
 
         return {
-            "ats_score": 0,
-            "strengths": [],
-            "missing_skills": [],
-            "recommended_roles": [],
-            "career_advice": "AI could not analyze this resume."
+
+            "ats_score":50,
+
+            "strengths":[
+                "Unable to detect"
+            ],
+
+            "missing_skills":[
+                "Unable to detect"
+            ],
+
+            "recommended_roles":[
+                "Try again"
+            ],
+
+            "career_advice":
+            "AI response format issue. Please analyze again."
+
         }
