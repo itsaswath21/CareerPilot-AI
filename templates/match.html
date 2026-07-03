@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Job Match Result
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="mb-5">
+
+
+    <h1 class="fw-bold display-5">
+
+        🎯 Resume Match Analysis
+
+    </h1>
+
+
+    <p class="text-muted">
+
+        AI comparison between your resume and selected job.
+
+    </p>
+
+
+</div>
+
+
+
+
+
+<div class="row g-4">
+
+
+
+    <!-- MATCH SCORE -->
+
+
+    <div class="col-lg-4">
+
+
+        <div class="card shadow-lg">
+
+
+            <div class="card-body text-center p-5">
+
+
+                <h4>
+
+                    Match Score
+
+                </h4>
+
+
+
+                <h1 class="display-1 fw-bold text-primary">
+
+
+                    {{ match["match_score"] }}%
+
+
+                </h1>
+
+
+
+
+                <div class="progress">
+
+
+                    <div
+
+                    class="progress-bar"
+
+                    style="width: {{ match['match_score'] }}%">
+
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- JOB INFO -->
+
+
+    <div class="col-lg-8">
+
+
+        <div class="card shadow-lg">
+
+
+            <div class="card-body p-5">
+
+
+                <h3>
+
+                    💼 {{ job.title }}
+
+                </h3>
+
+
+                <hr>
+
+
+                <p>
+
+                    🏢 {{ job.company }}
+
+                </p>
+
+
+
+                <p>
+
+                    📍 {{ job.location }}
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="row g-4 mt-4">
+
+
+
+    <!-- MATCHED -->
+
+
+    <div class="col-lg-6">
+
+
+        <div class="card shadow">
+
+
+            <div class="card-body p-5">
+
+
+                <h4>
+
+                    ✅ Matching Skills
+
+                </h4>
+
+
+
+                <hr>
+
+
+
+
+                {% for skill in match["matched_skills"] %}
+
+
+
+                <span class="badge bg-success fs-6 m-2">
+
+
+                    {{ skill }}
+
+
+                </span>
+
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- MISSING -->
+
+
+    <div class="col-lg-6">
+
+
+        <div class="card shadow">
+
+
+            <div class="card-body p-5">
+
+
+
+                <h4>
+
+
+                    ⚠ Skills To Improve
+
+
+                </h4>
+
+
+                <hr>
+
+
+
+
+                {% for skill in match["missing_skills"] %}
+
+
+
+                <span class="badge bg-danger fs-6 m-2">
+
+
+                    {{ skill }}
+
+
+                </span>
+
+
+
+                {% endfor %}
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card shadow mt-4">
+
+
+    <div class="card-body p-5">
+
+
+
+        <h4>
+
+            🤖 AI Recommendation
+
+        </h4>
+
+
+        <hr>
+
+
+
+        <div class="alert alert-info">
+
+
+            {{ match["recommendation"] }}
+
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<div class="text-center mt-5">
+
+
+    <a href="/" class="btn btn-primary btn-lg">
+
+
+        Analyze Another Resume 🚀
+
+
+    </a>
+
+
+</div>
+
+
+
+
+{% endblock %}
