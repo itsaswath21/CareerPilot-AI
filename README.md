@@ -48,7 +48,24 @@ Provides:
 - Missing skills
 - Personalized preparation advice
 
+## 📸 Screenshots
 
+
+### 🚀 Home Page
+
+![Home](assets/screenshots/home.png)
+
+
+
+### 📊 AI Dashboard
+
+![Dashboard](assets/screenshots/dashboard.png)
+
+
+
+### 🎯 Resume Job Match
+
+![Match](assets/screenshots/match.png)
 
 ## 🛠 Tech Stack
 
